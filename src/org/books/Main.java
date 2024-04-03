@@ -1,6 +1,7 @@
 package org.books;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
@@ -34,24 +35,31 @@ public class Main {
 
         }
 
-        for (Book book : books) {
-            System.out.println(book.getFullInfoBook());
-        }
         //percorso file
         File root = new File("./resources/books.txt");
-
 
         FileWriter fileWriter = null;
         try {
             fileWriter = new FileWriter(root);
             for (Book book : books) {
                 //Scrivere il contenuto nel root
-                fileWriter.write(book.getFullInfoBook());;
+                fileWriter.write(book.getFullInfoBook());
             }
+            //terminare fileWriter
+            fileWriter.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
+        try {
+            Scanner fileReading = new Scanner(root);
+            //ritorna true se sono presenti altre linee da leggere
+            while (fileReading.hasNextLine()){
+                System.out.println(fileReading.nextLine());
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         keyboard.close();
     }
 }
