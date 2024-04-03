@@ -28,6 +28,8 @@ public class Main {
                     String publisher = keyboard.nextLine().trim();
                     books[i] = new Book(bookTitle,numPages,author,publisher);
                     success=true;
+                }catch (NumberFormatException e){
+                    System.out.println("Number of pages must be a number");
                 } catch (IllegalArgumentException e) {
                     System.out.println(e.getMessage());
                 }
