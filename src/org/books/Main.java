@@ -13,7 +13,7 @@ public class Main {
         int numBooks = Integer.parseInt(keyboard.nextLine());
         Book[] books = new Book[numBooks];
 
-        for (int i = 0; i <books.length ; i++) {
+        for (int i = 0; i < books.length; i++) {
             boolean success = false;
             do {
                 try {
@@ -26,14 +26,14 @@ public class Main {
                     String author = keyboard.nextLine().trim();
                     System.out.print("Publisher:");
                     String publisher = keyboard.nextLine().trim();
-                    books[i] = new Book(bookTitle,numPages,author,publisher);
-                    success=true;
-                }catch (NumberFormatException e){
+                    books[i] = new Book(bookTitle, numPages, author, publisher);
+                    success = true;
+                } catch (NumberFormatException e) {
                     System.out.println("Number of pages must be a number");
                 } catch (IllegalArgumentException e) {
                     System.out.println(e.getMessage());
                 }
-            }while (!success);
+            } while (!success);
 
         }
 
@@ -56,9 +56,10 @@ public class Main {
         try {
             Scanner fileReading = new Scanner(root);
             //ritorna true se sono presenti altre linee da leggere
-            while (fileReading.hasNextLine()){
+            while (fileReading.hasNextLine()) {
                 System.out.println(fileReading.nextLine());
             }
+            fileReading.close();
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
