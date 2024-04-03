@@ -8,11 +8,11 @@ public class Book {
 
     public Book(String titolo, int numeroPagine, String autore, String editore) throws IllegalArgumentException {
         //isEmpty = ritorna true se length == 0
-        if ((titolo == null || titolo.isEmpty() || autore == null || autore.isEmpty()|| editore == null || editore.isEmpty()) && numeroPagine<= 0){
+        if ((titolo == null || titolo.isEmpty() || autore == null || autore.isEmpty() || editore == null || editore.isEmpty()) && numeroPagine <= 0) {
             throw new IllegalArgumentException("Fields cannot be empty or negative");
-        } else if (titolo == null || titolo.isEmpty() || autore == null || autore.isEmpty()|| editore == null || editore.isEmpty()) {
+        } else if (titolo == null || titolo.isEmpty() || autore == null || autore.isEmpty() || editore == null || editore.isEmpty()) {
             throw new IllegalArgumentException("The title, author or publisher cannot be blank");
-        } else if (numeroPagine<= 0){
+        } else if (numeroPagine <= 0) {
             throw new IllegalArgumentException("Page numbers cannot be less than or equal to 0");
         }
         this.titolo = titolo;
@@ -25,7 +25,10 @@ public class Book {
         return titolo;
     }
 
-    public void setTitolo(String titolo) {
+    public void setTitolo(String titolo) throws IllegalArgumentException {
+        if (titolo == null || titolo.isEmpty()) {
+            throw new IllegalArgumentException("The title cannot be blank");
+        }
         this.titolo = titolo;
     }
 
@@ -33,7 +36,10 @@ public class Book {
         return numeroPagine;
     }
 
-    public void setNumeroPagine(int numeroPagine) {
+    public void setNumeroPagine(int numeroPagine) throws IllegalArgumentException {
+        if (numeroPagine <= 0) {
+            throw new IllegalArgumentException("Page numbers cannot be less than or equal to 0");
+        }
         this.numeroPagine = numeroPagine;
     }
 
@@ -41,7 +47,10 @@ public class Book {
         return autore;
     }
 
-    public void setAutore(String autore) {
+    public void setAutore(String autore) throws IllegalArgumentException {
+        if (autore == null || autore.isEmpty()) {
+            throw new IllegalArgumentException("The author cannot be blank");
+        }
         this.autore = autore;
     }
 
@@ -49,10 +58,14 @@ public class Book {
         return editore;
     }
 
-    public void setEditore(String editore) {
+    public void setEditore(String editore) throws IllegalArgumentException {
+        if (editore == null || editore.isEmpty()) {
+            throw new IllegalArgumentException("The publisher cannot be blank");
+        }
         this.editore = editore;
     }
-    public String getFullInfoBook(){
-        return "BOOK INFORMATION\n"+ "Title: "+getTitolo() +'\n'+ "Number page: "+getNumeroPagine() +'\n'+ "Author: " +getAutore()+'\n'+ "Publisher: " +getEditore();
+
+    public String getFullInfoBook() {
+        return "BOOK INFORMATION\n" + "Title: " + getTitolo() + '\n' + "Number page: " + getNumeroPagine() + '\n' + "Author: " + getAutore() + '\n' + "Publisher: " + getEditore();
     }
 }
